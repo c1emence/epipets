@@ -1,0 +1,23 @@
+Package: epipets
+Type: Package
+Title: Friendly Epidemiology Helpers
+Version: 0.1.0
+Authors@R: c(
+    person(
+      "Clemence", "Fichet",
+      email = "clemence.fichet@gmail.com",
+      role = c("aut", "cre")
+    )
+  )
+Description: A collection of simple helper functions for common
+    epidemiologic data analysis tasks, including descriptive tabulation
+    and regression output. EpiPets provides concise, beginner-friendly
+    functions designed to simplify repetitive analytic workflows.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    broom,
+    dplyr,
+    tidyr
+Config/roxygen2/version: 8.1.0
