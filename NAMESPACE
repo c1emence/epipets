@@ -2,4 +2,5 @@
 
 export(cooper)
 export(loggy)
+export(lookie)
 export(tabby)

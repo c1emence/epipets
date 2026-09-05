@@ -19,5 +19,9 @@ LazyData: true
 Imports: 
     broom,
     dplyr,
-    tidyr
+    tidyr,
+    purrr,
+    rlang,
+    stringr,
+    tibble
 Config/roxygen2/version: 8.1.0
