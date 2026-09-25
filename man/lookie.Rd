@@ -12,6 +12,8 @@ lookie(dataframe, var, group)
 \item{var}{An unquoted column-name (variable) prefix used to identify columns to search.}
 
 \item{group}{A named list of vectors containing values to search for.}
+
+\item{match}{A matching argument that defaults to exact term matching. Specify match = "prefix" to use prefix-based matching of values. When using exact matching, a search for A15 will return false for a value A150 or A156. When using prefix matching, searching for A15 will return true for a value A15, A159, A1555, and so on.}
 }
 \value{
 A tibble containing each group and its count and percentage formatted as n (\%), followed by a total row. Please pay attention to the output inherent to the structure of this function. If you utilize multiple values across multiple columns, percent values in the output will not sum to 100\%.

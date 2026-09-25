@@ -5,6 +5,7 @@
 #' @param dataframe A data frame.
 #' @param var An unquoted column-name (variable) prefix used to identify columns to search.
 #' @param group A named list of vectors containing values to search for.
+#' @param match A matching argument that defaults to exact term matching. Specify match = "prefix" to use prefix-based matching of values. When using exact matching, a search for A15 will return false for a value A150 or A156. When using prefix matching, searching for A15 will return true for a value A15, A159, A1555, and so on.
 #'
 #' @return A tibble containing each group and its count and percentage formatted as n (\%), followed by a total row. Please pay attention to the output inherent to the structure of this function. If you utilize multiple values across multiple columns, percent values in the output will not sum to 100\%.
 #'
@@ -33,7 +34,10 @@
 #'
 #' @export
 
-lookie <- function(dataframe, var, group) {
+lookie <- function(dataframe, var, group,
+                   match = c("exact", "prefix")) {
+
+  match <- match.arg(match)
 
   pattern <- rlang::as_name(rlang::ensym(var))
   # so we don't have to put quotes around var when calling it
@@ -49,7 +53,13 @@ lookie <- function(dataframe, var, group) {
           n = sum(
             dplyr::if_any(
               dplyr::starts_with(pattern),
-              function(x) x %in% codes
+              function(x) {
+                if (match == "exact") {
+                  x %in% codes
+                } else if (match == "prefix") {
+                  stringr::str_detect(
+                    x,
+                    paste0("^(", paste(codes, collapse = "|"), ")")
             )
             # take the dataframe, then:
             #   spit out the following:
@@ -62,6 +72,9 @@ lookie <- function(dataframe, var, group) {
             # Result:
             # sum of how many rows have at least one value in "group" across
             # any columns in the "dataframe" that match the "pattern"
+                }
+              }
+            )
           )
         ) |>
         dplyr::pull(n)
@@ -88,3 +101,4 @@ lookie <- function(dataframe, var, group) {
   ) |>
     dplyr::select(group, cell)
 }
+
