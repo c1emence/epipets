@@ -4,7 +4,7 @@
 \alias{lookie}
 \title{Lookie (Lookup and Summarize)}
 \usage{
-lookie(dataframe, var, group)
+lookie(dataframe, var, group, match = c("exact", "prefix"))
 }
 \arguments{
 \item{dataframe}{A data frame.}

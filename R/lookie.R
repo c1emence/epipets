@@ -101,4 +101,3 @@ lookie <- function(dataframe, var, group,
   ) |>
     dplyr::select(group, cell)
 }
-
