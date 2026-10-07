@@ -24,7 +24,13 @@
 
 loggy <- function(dataframe, y, x) {
 
-  formula <- substitute(y ~ x)
+  y <- rlang::as_name(rlang::ensym(y))
+  x <- rlang::as_name(rlang::ensym(x))
+
+  formula <- stats::reformulate(
+    x,
+    response = y
+  )
 
   model <- stats::glm(
     formula,
