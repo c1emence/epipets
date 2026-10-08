@@ -8,5 +8,7 @@ utils::globalVariables(c(
   "p.value",
   "term",
   "OR (95% CI)",
-  "p-value"
+  "p-value",
+  "Variable",
+  "Category"
 ))
